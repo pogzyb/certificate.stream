@@ -1,0 +1,50 @@
+---
+version: '3.5'
+
+services:
+  certificate.stream:
+    image: ghcr.io/pogzyb/certificate.stream:latest
+    container_name: certificate.stream_kafka_google
+    environment:
+      - SINK_KAFKA_TOPIC_NAME=ctlogs
+      - SINK_KAFKA_ENDPOINT_URL=kafka-broker:9092  # if multiple hosts -> "broker1:9092,broker2:9093"
+      - SINK_KAFKA_PARTITION=0
+    entrypoint: >
+      sh -c "sleep 20s && certificate stream -s kafka -o google -d"
+
+  # SOURCE: https://developer.confluent.io/quickstart/kafka-docker/
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.0
+    container_name: zookeeper
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+
+  kafka-broker:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: kafka-broker
+    hostname: kafka-broker
+    ports:
+    # To learn about configuring Kafka for access across networks see
+    # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-broker:9092,PLAINTEXT_INTERNAL://kafka-broker:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+
+  kafka-consumer:
+    build: 
+      context: consumers
+      dockerfile: Dockerfile
+    container_name: kafka-consumer
+    environment:
+      - TOPIC_NAME=ctlogs
+      - KAFKA_HOST=kafka-broker:9092
+    command: consumer_kafka.py

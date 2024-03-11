@@ -1,0 +1,46 @@
+---
+version: '3.5'
+
+services:
+  certificate.stream:
+    image: ghcr.io/pogzyb/certificate.stream:latest
+    container_name: certificate.stream_firehose_digicert
+    environment:
+      - AWS_ENDPOINT_URL=http://aws-firehose:4566
+      - AWS_ACCESS_KEY_ID=boo
+      - AWS_SECRET_ACCESS_KEY=hoo
+      - AWS_DEFAULT_REGION_NAME=us-east-1
+      - SINK_FIREHOSE_DELIVERY_STREAM_NAME=ctlogs
+    entrypoint: >
+      sh -c "sleep 20s && certificate stream -s firehose -o digicert -d"
+
+  aws-firehose:
+    image: localstack/localstack:3.2
+    container_name: aws-firehose
+    hostname: aws-firehose
+    environment:
+      - DEBUG=1
+      - PORT_WEB_UI=9999
+      - START_WEB=1
+      - SERVICES=s3,kinesis,firehose,dynamodb,sts
+    ports:
+      - "4510-4559:4510-4559"
+      - "4566:4566"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./aws/bootstrap/:/etc/localstack/init/ready.d/
+      - ./aws/resources:/tmp/resources
+
+  s3-consumer:
+    build: 
+      context: consumers
+      dockerfile: Dockerfile
+    container_name: s3-consumer
+    environment:
+      - BUCKET_NAME=ctlogs
+      - BUCKET_PREFIX=logs
+      - AWS_ENDPOINT_URL=http://aws-firehose:4566
+      - AWS_ACCESS_KEY_ID=boo
+      - AWS_SECRET_ACCESS_KEY=hoo
+      - AWS_DEFAULT_REGION_NAME=us-east-1
+    command: consumer_firehose_s3.py

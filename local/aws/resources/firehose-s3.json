@@ -1,0 +1,10 @@
+{
+    "RoleARN": "arn:aws:iam:::firehoseRole",
+    "BucketARN": "arn:aws:s3:::ctlogs",
+    "Prefix": "logs",
+    "ErrorOutputPrefix": "error",
+    "BufferingHints": {
+        "SizeInMBs": 12,
+        "IntervalInSeconds": 60
+    }
+}
