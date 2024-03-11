@@ -23,7 +23,7 @@ LABEL org.opencontainers.image.source="https://github.com/pogzyb/certificate.str
 LABEL org.opencontainers.image.documentation="https://github.com/pogzyb/certificate.stream"
 LABEL org.opencontainers.image.created=CREATED
 LABEL org.opencontainers.image.revision=REVISION
-LABEL org.opencontainers.image.licenses="MIT License"
+LABEL org.opencontainers.image.licenses="MIT"
 
 COPY --from=build /certificate.stream/certificate /usr/local/bin/certificate
 RUN chmod u+x /usr/local/bin/certificate
