@@ -8,13 +8,12 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "cs",
+	Use:   "certificate",
 	Short: "Stream certificate transparency logs.",
 	Long: `The easiest way to stream the certificate transparency logs.
-			Complete documentation is available at https://certificate.stream/documentation/`,
-	Run: func(cmd *cobra.Command, args []string) {
-		// Do Stuff Here
-	},
+Full description: https://github.com/pogzyb/certificate.stream/
+Learn more about the Certificate Transparency: https://certificate.transparency.dev/`,
+	Run: func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() {
