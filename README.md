@@ -1,13 +1,13 @@
 # certificate.stream
 <b>TLS certificate transparency monitoring for everybody.</b>
 
-Set up a Log Sink (Kinesis Firehose, Kafka, ...), Run the certificate.stream container(s), and Start consuming certificates.
+Set up a Log Sink (Firehose, Kafka, ...), Run the certificate.stream container(s), and Start consuming certificates.
 
 ![overview](./docs/certificatedotstream.png)
 
 ## Premise
 
-`certificate.stream`'s mission is to provide an easy-to-use, open-source means of implementing domain monitoring.
+certificate.stream's mission is to provide an easy-to-use, open-source certificate transparency log monitoring tool to help you and your organization combat phishing and typosquatting.
 
 > "In 2021, the total number of phishing and counterfeit pages detected increased 1.5x over 2020 to a total of more than 10.5 million — and it continues to grow..." — [Security Boulevard](https://securityboulevard.com/2022/03/what-is-domain-monitoring-and-why-you-need-it/)
 
