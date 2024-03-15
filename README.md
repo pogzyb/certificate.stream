@@ -1,4 +1,8 @@
 # certificate.stream
+![build](https://github.com/pogzyb/certificate.stream/actions/workflows/docker-image.yml/badge.svg)
+![tag](https://ghcr-badge.egpl.dev/pogzyb/certificate.stream/latest_tag?trim=major&label=latest)
+
+
 <b>TLS certificate transparency monitoring for everybody.</b>
 
 Set up a Log Sink (Firehose, Kafka, ...), Run the certificate.stream container(s), and Start consuming certificates.
