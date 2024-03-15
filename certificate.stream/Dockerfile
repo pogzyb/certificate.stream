@@ -9,20 +9,20 @@ RUN apk update && apk add git \
 
 FROM alpine:3.19
 
-ENV VERSION=0.1.dev0
+ENV VERSION=0.1.0
 
 ARG CREATED
 ARG REVISION
 
 LABEL org.opencontainers.image.title="Certificate Stream"
 LABEL org.opencontainers.image.description="Certificate Transparency Log monitoring for everybody."
-LABEL org.opencontainers.image.version=VERSION
+LABEL org.opencontainers.image.version=$VERSION
 LABEL org.opencontainers.image.authors="pogzyb@umich.edu"
 LABEL org.opencontainers.image.url="https://github.com/pogzyb/certificate.stream"
 LABEL org.opencontainers.image.source="https://github.com/pogzyb/certificate.stream/certificate.stream"
 LABEL org.opencontainers.image.documentation="https://github.com/pogzyb/certificate.stream"
-LABEL org.opencontainers.image.created=CREATED
-LABEL org.opencontainers.image.revision=REVISION
+LABEL org.opencontainers.image.created=$CREATED
+LABEL org.opencontainers.image.revision=$REVISION
 LABEL org.opencontainers.image.licenses="MIT"
 
 COPY --from=build /certificate.stream/certificate /usr/local/bin/certificate
