@@ -8,6 +8,7 @@ import (
 	"certificate.stream/service/pkg/sink/file"
 	"certificate.stream/service/pkg/sink/firehose"
 	"certificate.stream/service/pkg/sink/kafka"
+	"certificate.stream/service/pkg/sink/s3"
 	"github.com/thediveo/enumflag/v2"
 )
 
@@ -18,12 +19,14 @@ const (
 	Firehose
 	Kafka
 	File
+	S3
 )
 
 var SinkSourceIds = map[SinkSource][]string{
 	Firehose: {"firehose"},
 	Kafka:    {"kafka"},
 	File:     {"file"},
+	S3:       {"s3"},
 }
 
 type Sink interface {
@@ -34,6 +37,11 @@ type Sink interface {
 
 func GetSink(ctx context.Context, ss SinkSource) (Sink, error) {
 	switch ss {
+	case S3:
+		sink := &s3.SinkS3{}
+		err := sink.Init(ctx)
+		return sink, err
+
 	case File:
 		sink := &file.SinkFile{}
 		err := sink.Init(ctx)

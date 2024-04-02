@@ -164,7 +164,7 @@ func (ls *LogStream) updateSTH(ctx context.Context) error {
 	}
 	ls.IndexEnd = int64(head.TreeSize)
 	log.Debug().Msg(
-		fmt.Sprintf("%s STH changed: start=%d end=%d",
+		fmt.Sprintf("%s STH updated: start=%d end=%d",
 			ls.String(),
 			ls.IndexStart,
 			ls.IndexEnd,

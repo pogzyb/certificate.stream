@@ -49,7 +49,7 @@ func (sk *SinkKafka) Init(ctx context.Context) error {
 	return nil
 }
 
-// Sends all certificate logs in this batch to the Kafka topic
+// Sends all certificate logs in this batch to the Kafka topic.
 func (sk *SinkKafka) Put(ctx context.Context, batch *certificate.Batch) error {
 	kfRecords := make([]kafka.Message, 0, len(batch.Logs))
 	for _, logEntry := range batch.Logs {

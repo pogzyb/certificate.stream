@@ -9,7 +9,7 @@ RUN apk update && apk add git \
 
 FROM alpine:3.19
 
-ENV VERSION=0.1.0
+ENV VERSION=0.1.1
 
 ARG CREATED
 ARG REVISION
