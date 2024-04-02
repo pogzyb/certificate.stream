@@ -1,26 +1,28 @@
 ---
 services:
   certificate.stream:
-    image: ghcr.io/pogzyb/certificate.stream:latest
-    container_name: certificate.stream_firehose_digicert
+    image: certificate.stream:latest
+    container_name: certificate.stream_s3_google
     environment:
-      - AWS_ENDPOINT_URL=http://aws-firehose:4566
+      - AWS_ENDPOINT_URL=http://aws-s3:4566
       - AWS_ACCESS_KEY_ID=boo
       - AWS_SECRET_ACCESS_KEY=hoo
       - AWS_DEFAULT_REGION=us-east-1
-      - SINK_FIREHOSE_DELIVERY_STREAM_NAME=ctlogs
+      - SINK_S3_BUCKET_NAME=ctlogs
+      - SINK_S3_BUCKET_PREFIX=logs
+      - SINK_S3_USE_DATE_PARTITIONING=true
     entrypoint: >
-      sh -c "sleep 20s && certificate stream -s firehose -o digicert -d"
+      sh -c "sleep 25s && certificate stream -s s3 -o google -d"
 
-  aws-firehose:
+  aws-s3:
     image: localstack/localstack:3.2
-    container_name: aws-firehose
-    hostname: aws-firehose
+    container_name: aws-s3
+    hostname: aws-s3
     environment:
       - DEBUG=1
       - PORT_WEB_UI=9999
       - START_WEB=1
-      - SERVICES=s3,kinesis,firehose,dynamodb,sts
+      - SERVICES=s3,dynamodb,sts
     ports:
       - "4510-4559:4510-4559"
       - "4566:4566"
@@ -37,7 +39,7 @@ services:
     environment:
       - BUCKET_NAME=ctlogs
       - BUCKET_PREFIX=logs
-      - AWS_ENDPOINT_URL=http://aws-firehose:4566
+      - AWS_ENDPOINT_URL=http://aws-s3:4566
       - AWS_ACCESS_KEY_ID=boo
       - AWS_SECRET_ACCESS_KEY=hoo
       - AWS_DEFAULT_REGION=us-east-1
