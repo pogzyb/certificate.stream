@@ -7,7 +7,7 @@
 
 Set up a Log Sink (Firehose, Kafka, ...), Run the certificate.stream container(s), and Start consuming certificates.
 
-![overview](./docs/certificatedotstream.png)
+![overview](./docs/certificatedotsream_v011.png)
 
 ## Premise
 

@@ -1,6 +1,4 @@
 ---
-version: '3.5'
-
 services:
   certificate.stream:
     image: ghcr.io/pogzyb/certificate.stream:latest

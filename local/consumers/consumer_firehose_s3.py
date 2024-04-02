@@ -21,7 +21,7 @@ if __name__ == "__main__":
             Bucket=bucket_name,
             Prefix=os.getenv("BUCKET_PREFIX"),
         )
-        contents = resp["Contents"]
+        contents = resp.get("Contents", [])
         for obj in contents:
             key = obj.get("Key")
             if key not in seen:
