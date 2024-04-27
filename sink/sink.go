@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"certificate.stream/service/pkg/certificate/v1"
-	"certificate.stream/service/pkg/sink/file"
-	"certificate.stream/service/pkg/sink/firehose"
-	"certificate.stream/service/pkg/sink/kafka"
-	"certificate.stream/service/pkg/sink/s3"
+	"certificate.stream/service/certificate/v1"
+	"certificate.stream/service/sink/file"
+	"certificate.stream/service/sink/firehose"
+	"certificate.stream/service/sink/kafka"
+	"certificate.stream/service/sink/s3"
 	"github.com/thediveo/enumflag/v2"
 )
 

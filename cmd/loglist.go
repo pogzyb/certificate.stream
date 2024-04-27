@@ -7,7 +7,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 
-	"certificate.stream/service/pkg/stream"
+	"certificate.stream/service/stream"
 )
 
 func init() {

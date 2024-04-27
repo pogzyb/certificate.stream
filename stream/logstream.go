@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"certificate.stream/service/pkg/certificate/v1"
+	"certificate.stream/service/certificate/v1"
 	"github.com/cenkalti/backoff/v4"
 	ct "github.com/google/certificate-transparency-go"
 	"github.com/google/certificate-transparency-go/client"
