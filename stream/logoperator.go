@@ -6,7 +6,7 @@ import (
 	"slices"
 	"sync"
 
-	"certificate.stream/service/pkg/certificate/v1"
+	"certificate.stream/service/certificate/v1"
 	"github.com/google/certificate-transparency-go/loglist3"
 	"github.com/rs/zerolog/log"
 	"github.com/thediveo/enumflag/v2"

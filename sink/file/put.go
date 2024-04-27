@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"certificate.stream/service/pkg/certificate/v1"
+	"certificate.stream/service/certificate/v1"
 	"github.com/google/uuid"
 )
 

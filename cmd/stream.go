@@ -8,9 +8,9 @@ import (
 	"sync"
 	"syscall"
 
-	"certificate.stream/service/pkg/certificate/v1"
-	"certificate.stream/service/pkg/sink"
-	"certificate.stream/service/pkg/stream"
+	"certificate.stream/service/certificate/v1"
+	"certificate.stream/service/sink"
+	"certificate.stream/service/stream"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"

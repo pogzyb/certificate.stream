@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"certificate.stream/service/pkg/certificate/v1"
+	"certificate.stream/service/certificate/v1"
 
 	"github.com/rs/zerolog/log"
 	"github.com/segmentio/kafka-go"
