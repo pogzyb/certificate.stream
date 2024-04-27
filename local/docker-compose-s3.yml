@@ -1,7 +1,8 @@
 ---
 services:
   certificate.stream:
-    image: certificate.stream:latest
+    image: cs:latest
+    # image: ghcr.io/pogzyb/certificate.stream:latest
     container_name: certificate.stream_s3_google
     environment:
       - AWS_ENDPOINT_URL=http://aws-s3:4566
@@ -12,7 +13,7 @@ services:
       - SINK_S3_BUCKET_PREFIX=logs
       - SINK_S3_USE_DATE_PARTITIONING=true
     entrypoint: >
-      sh -c "sleep 25s && certificate stream -s s3 -o google -d"
+      sh -c "sleep 25s && ctlog stream -s s3 -o google -d"
 
   aws-s3:
     image: localstack/localstack:3.2

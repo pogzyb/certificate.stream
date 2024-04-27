@@ -10,7 +10,7 @@ services:
       - AWS_DEFAULT_REGION=us-east-1
       - SINK_FIREHOSE_DELIVERY_STREAM_NAME=ctlogs
     entrypoint: >
-      sh -c "sleep 20s && certificate stream -s firehose -o digicert -d"
+      sh -c "sleep 20s && ctlog stream -s firehose -o digicert -d"
 
   aws-firehose:
     image: localstack/localstack:3.2
